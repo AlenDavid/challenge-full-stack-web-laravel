@@ -1420,6 +1420,11 @@
     "@types/yargs" "^15.0.0"
     chalk "^4.0.0"
 
+"@mdi/font@^5.9.55":
+  version "5.9.55"
+  resolved "https://registry.yarnpkg.com/@mdi/font/-/font-5.9.55.tgz#41acd50b88073ded7095fc3029d8712b6e12f38e"
+  integrity sha512-jswRF6q3eq8NWpWiqct6q+6Fg/I7nUhrxYJfiEM8JJpap0wVJLQdbKtyS65GdlK7S7Ytnx3TTi/bmw+tBhkGmg==
+
 "@mdx-js/loader@^1.6.22":
   version "1.6.22"
   resolved "https://registry.yarnpkg.com/@mdx-js/loader/-/loader-1.6.22.tgz#d9e8fe7f8185ff13c9c8639c048b123e30d322c4"
@@ -1520,6 +1525,14 @@
     invariant "^2.2.3"
     prop-types "^15.6.1"
     react-lifecycles-compat "^3.0.4"
+
+"@socheatsok78/storybook-addon-vuetify@^0.1.8":
+  version "0.1.8"
+  resolved "https://registry.yarnpkg.com/@socheatsok78/storybook-addon-vuetify/-/storybook-addon-vuetify-0.1.8.tgz#b76b65734610b2412084e52babb39cb720758844"
+  integrity sha512-R5/Gc7sOVfDn56lb5qTIOIvayh9iLjo/8lQ6USTD6soXlncxwJmFZWyUe1OGbprDYL76qqtOoXErHv3mqlTL6Q==
+  dependencies:
+    "@mdi/font" "^5.9.55"
+    vuetify "^2.4.9"
 
 "@soda/friendly-errors-webpack-plugin@^1.7.1":
   version "1.8.0"
@@ -15016,7 +15029,7 @@ vuetify-loader@^1.7.0:
     file-loader "^6.2.0"
     loader-utils "^2.0.0"
 
-vuetify@^2.4.0:
+vuetify@^2.4.0, vuetify@^2.4.9:
   version "2.4.9"
   resolved "https://registry.yarnpkg.com/vuetify/-/vuetify-2.4.9.tgz#c4ccf4cf3dc81d426da78913c32d47ab33ede38f"
   integrity sha512-IS+ZKCk4+RhN8PW9mw6dLSGy0hnFZ0YwOg0Ga+sr9bngbSOI6nw0p+Y/U00vRw8DPScqUmK5cSrI8RhiaTpXow==
