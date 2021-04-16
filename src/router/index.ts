@@ -2,8 +2,7 @@ import Vue from "vue";
 import VueRouter, { RouteConfig } from "vue-router";
 import Home from "../views/Home.vue";
 import About from "../views/About.vue";
-
-import store from "@/store";
+import Login from "../views/Login.vue";
 
 Vue.use(VueRouter);
 
@@ -21,6 +20,7 @@ const routes: Array<RouteConfig> = [
   {
     path: "/login",
     name: "Login",
+    component: Login,
   },
   {
     path: "/profile",
@@ -49,13 +49,9 @@ const router = new VueRouter({
   routes,
 });
 
-router.beforeEach((to: any, from, next) => {
-  const { isLogged } = store.state.user;
-
-  const { auth = false } = to.meta;
-
-  if (auth && !isLogged) next({ name: "Home" });
-  else next();
+router.beforeEach((to, from, next) => {
+  // TODO: Handle auth routes here
+  next();
 });
 
 export default router;
