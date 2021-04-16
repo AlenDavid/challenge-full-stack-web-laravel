@@ -12,7 +12,14 @@ const Template = (args: any, { argTypes }: any) => ({
 });
 
 export const Default: any = Template.bind({});
-Default.args = {
+
+export const Filled: any = Template.bind({});
+Filled.args = {
   email: "example@email.com",
   password: "password",
+};
+
+export const EmailInvalid: any = Template.bind({});
+EmailInvalid.args = {
+  email: "invalid as email",
 };
