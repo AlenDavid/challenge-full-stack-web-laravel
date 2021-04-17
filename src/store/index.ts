@@ -3,6 +3,7 @@ import Vuex from "vuex";
 
 Vue.use(Vuex);
 
+// eslint-disable-next-line
 const store: any = new Vuex.Store({
   state: {},
   mutations: {},
