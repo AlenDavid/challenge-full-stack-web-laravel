@@ -3,7 +3,9 @@ import VueRouter, { RouteConfig } from "vue-router"
 import Home from "../views/Home.vue"
 import About from "../views/About.vue"
 import Login from "../views/Login.vue"
+import Application from "../views/Application.vue"
 import Students from "../views/Students.vue"
+
 import store from "@/store"
 
 Vue.use(VueRouter)
@@ -29,29 +31,28 @@ const routes: Array<RouteConfig> = [
 		},
 	},
 	{
-		path: "/profile",
-		name: "Profile",
-		meta: {
-			// only see if it's logged
-			auth: true,
-		},
-	},
-	{
-		path: "/students",
-		name: "Students",
-		component: Students,
-		meta: {
-			// only see if it's logged
-			auth: true,
-		},
-	},
-	{
-		path: "/managers",
-		name: "Managers",
-		meta: {
-			// only see if it's logged
-			auth: true,
-		},
+		path: "/app",
+		name: "App",
+		component: Application,
+		children: [
+			{
+				path: "/",
+				name: "Students",
+				component: Students,
+				meta: {
+					// only see if it's logged
+					auth: true,
+				},
+			},
+			{
+				path: "/profile",
+				name: "Profile",
+			},
+			{
+				path: "/managers",
+				name: "Managers",
+			},
+		],
 	},
 ]
 
@@ -87,6 +88,7 @@ router.beforeEach(async (to, from, next) => {
 
 	// user must be logged to go to next route
 	// or should go to login
+
 	if (auth && !userState.isLogged) next({ name: "Login" })
 
 	// user can go to next page
