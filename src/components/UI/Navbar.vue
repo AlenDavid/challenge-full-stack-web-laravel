@@ -1,11 +1,11 @@
 <template>
-  <v-app-bar app color="primary" dark> </v-app-bar>
+	<v-app-bar app color="primary" dark> </v-app-bar>
 </template>
 
 <script lang="ts">
-import Vue from "vue";
+import Vue from "vue"
 
 export default Vue.extend({
-  name: "Navbar",
-});
+	name: "Navbar",
+})
 </script>
