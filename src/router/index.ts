@@ -5,6 +5,7 @@ import About from "../views/About.vue"
 import Login from "../views/Login.vue"
 import Application from "../views/Application.vue"
 import Students from "../views/Students/List.vue"
+import StudentCreate from "../views/Students/Create.vue"
 
 import user from "@/store/modules/user"
 
@@ -47,6 +48,11 @@ const routes: Array<RouteConfig> = [
 				path: "students",
 				name: "Students",
 				component: Students,
+			},
+			{
+				path: "students/create",
+				name: "StudentCreate",
+				component: StudentCreate,
 			},
 			{
 				path: "profile",
