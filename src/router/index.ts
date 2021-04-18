@@ -3,6 +3,8 @@ import VueRouter, { RouteConfig } from "vue-router";
 import Home from "../views/Home.vue";
 import About from "../views/About.vue";
 import Login from "../views/Login.vue";
+import Students from "../views/Students.vue";
+import store from "@/store";
 
 Vue.use(VueRouter);
 
@@ -21,18 +23,25 @@ const routes: Array<RouteConfig> = [
     path: "/login",
     name: "Login",
     component: Login,
+    meta: {
+      // cannot see if it's logged
+      cannotIfLogged: true,
+    },
   },
   {
     path: "/profile",
     name: "Profile",
     meta: {
+      // only see if it's logged
       auth: true,
     },
   },
   {
     path: "/students",
     name: "Students",
+    component: Students,
     meta: {
+      // only see if it's logged
       auth: true,
     },
   },
@@ -40,6 +49,7 @@ const routes: Array<RouteConfig> = [
     path: "/managers",
     name: "Managers",
     meta: {
+      // only see if it's logged
       auth: true,
     },
   },
@@ -49,8 +59,37 @@ const router = new VueRouter({
   routes,
 });
 
-router.beforeEach((to, from, next) => {
-  // TODO: Handle auth routes here
+router.beforeEach(async (to, from, next) => {
+  // this is our user state
+  const userState = store.state.user;
+
+  if (!userState.isLogged) {
+    try {
+      const res = await fetch("/api/current", {
+        method: "POST",
+      });
+      // es-lint-ignore-next-line
+      const { data } = await res.json();
+
+      if (data) {
+        store.commit("user/login", data);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  }
+  const { auth = false, cannotIfLogged = false } = to.meta;
+
+  // maybe logged user cannot see next page
+  // this rules apply to login page
+  // but can be applied to other routes all well
+  if (cannotIfLogged && userState.isLogged) return;
+
+  // user must be logged to go to next route
+  // or should go to login
+  if (auth && !userState.isLogged) next({ name: "Login" });
+
+  // user can go to next page
   next();
 });
 
