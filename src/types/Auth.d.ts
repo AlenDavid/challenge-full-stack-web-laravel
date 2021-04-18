@@ -1,6 +1,5 @@
 interface INotLogged {
 	isLogged: false
-	user: Record<string, never>
 }
 
 interface ILogged {
