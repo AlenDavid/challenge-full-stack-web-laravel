@@ -1,4 +1,4 @@
-enum UserEnum {
+enum UserType {
 	STUDENT = 0,
 	MANAGER = 1,
 	ADMIN = 2,
@@ -8,7 +8,7 @@ interface IUser {
 	snowflake: number
 	name: string
 	email: string
-	type: UserEnum.STUDENT | UserEnum.ADMIN | UserEnum.MANAGER
+	type: UserType.STUDENT | UserType.ADMIN | UserType.MANAGER
 	flags: number
 }
 
