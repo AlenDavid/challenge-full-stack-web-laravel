@@ -35,8 +35,9 @@ export default Vue.extend({
 					if (this.$router) {
 						this.$router.push("/")
 					}
-					user.commit("logout")
 				}
+
+				user.commit("logout")
 			})
 		},
 	},
