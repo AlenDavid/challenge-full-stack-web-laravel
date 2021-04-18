@@ -32,7 +32,7 @@
 	</v-container>
 </template>
 
-<script>
+<script lang="ts">
 import Vue from "vue"
 
 export default Vue.extend({
@@ -58,6 +58,23 @@ export default Vue.extend({
 			itemsPerPageOptions: [5, 10, 15],
 		},
 	}),
+	methods: {
+		go(path: string) {
+			// $router does not exist in storybook
+			if (this.$router) {
+				this.$router.push(path)
+			}
+		},
+		refresh() {
+			this.$asyncComputed.students.update()
+		},
+		refreshPerPage(value: any) {
+			this.perPage = value(this as any).refresh()
+		},
+		refreshPage(value: any) {
+			this.page = value(this as any).refresh()
+		},
+	},
 	asyncComputed: {
 		students: {
 			get() {
@@ -87,24 +104,8 @@ export default Vue.extend({
 			},
 			default: [],
 			shouldUpdate() {
-				return this.students.length === 0 && this.search.length === 0
+				return (this as any).students.length === 0 && this.search.length === 0
 			},
-		},
-	},
-	methods: {
-		click(value) {
-			console.log(value)
-		},
-		refresh() {
-			this.$asyncComputed.students.update()
-		},
-		refreshPerPage(value) {
-			this.perPage = value
-			this.refresh()
-		},
-		refreshPage(value) {
-			this.page = value
-			this.refresh()
 		},
 	},
 })
