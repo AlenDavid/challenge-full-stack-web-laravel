@@ -1,8 +1,10 @@
 <template>
-	<div>
+	<v-row class="row">
 		<navigation />
-		<router-view />
-	</div>
+		<v-col>
+			<router-view />
+		</v-col>
+	</v-row>
 </template>
 
 <script lang="ts">
@@ -16,3 +18,10 @@ export default Vue.extend({
 	},
 })
 </script>
+
+<style lang="scss" scoped>
+.row {
+	height: 100%;
+	margin: 0;
+}
+</style>
