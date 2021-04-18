@@ -4,7 +4,7 @@ import Home from "../views/Home.vue"
 import About from "../views/About.vue"
 import Login from "../views/Login.vue"
 import Application from "../views/Application.vue"
-import Students from "../views/Students.vue"
+import Students from "../views/Students/List.vue"
 
 import user from "@/store/modules/user"
 

@@ -10,7 +10,7 @@
 				</v-text-field>
 			</v-col>
 			<v-col cols="12" sm="2" md="4">
-				<v-btn block x-large color="primary">Cadastrar aluno</v-btn>
+				<v-btn block x-large color="primary">Register student</v-btn>
 			</v-col>
 		</v-row>
 		<v-row>
@@ -36,7 +36,7 @@
 import Vue from "vue"
 
 export default Vue.extend({
-	name: "Students",
+	name: "StudentsList",
 	data: () => ({
 		page: 1,
 		search: "",
