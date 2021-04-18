@@ -1,7 +1,17 @@
 <template>
 	<v-container>
-		<v-row>
-			<p>search bar</p>
+		<h1>Students</h1>
+		<v-row align="center">
+			<v-col cols="12" sm="6" md="8">
+				<v-text-field label="Type to search" v-model="search">
+					<span slot="append">
+						<v-btn outlined @click="refresh">Search</v-btn>
+					</span>
+				</v-text-field>
+			</v-col>
+			<v-col cols="12" sm="2" md="4">
+				<v-btn block x-large color="primary">Cadastrar aluno</v-btn>
+			</v-col>
 		</v-row>
 		<v-row>
 			<v-data-table
@@ -14,6 +24,7 @@
 				:loading="loading"
 				:page="page"
 				:items-per-page="perPage"
+				:footer-props="footerProps"
 				@update:page="refreshPage"
 				@update:items-per-page="refreshPerPage"
 			></v-data-table>
@@ -28,54 +39,72 @@ export default Vue.extend({
 	name: "Students",
 	data: () => ({
 		page: 1,
+		search: "",
 		perPage: 5,
 		total: -1,
-		loading: false,
+		loading: true,
 		headers: [
 			{
 				text: "RA (Academic Register)",
 				align: "start",
 				value: "RA",
+				width: 1,
 			},
-			{ text: "Name", value: "name" },
-			{ text: "CPF", value: "CPF" },
-			{ text: "E-mail", value: "email" },
+			{ text: "Name", value: "name", width: 4 },
+			{ text: "CPF", value: "CPF", width: 1 },
+			{ text: "E-mail", value: "email", width: 6 },
 		],
+		footerProps: {
+			itemsPerPageOptions: [5, 10, 15],
+		},
 	}),
 	asyncComputed: {
 		students: {
-			async get() {
+			get() {
 				this.loading = true
-				const response = await fetch(
-					`/api/students?page=${this.page}&per_page=${this.perPage}`,
-					{ method: "OPTIONS" }
-				)
-				const { data, meta } = await response.json()
-				// update total fields
-				this.total = meta.total
+				const url = `/api/students?page=${this.page}&per_page=${this.perPage}`
 
-				setTimeout(() => {
-					this.loading = false
-				}, 800)
+				const body = JSON.stringify({
+					search: this.search,
+				})
 
-				return data
+				return fetch(url, {
+					method: "OPTIONS",
+					body,
+					headers: { "Content-Type": "application/json" },
+				})
+					.then((res) => res.json())
+					.then(({ data, meta }) => {
+						// update total fields
+						this.total = meta.total
+
+						setTimeout(() => {
+							this.loading = false
+						}, 800)
+
+						return data
+					})
 			},
 			default: [],
-			watch: ["perPage"],
+			shouldUpdate() {
+				return this.students.length === 0 && this.search.length === 0
+			},
 		},
 	},
 	methods: {
 		click(value) {
 			console.log(value)
 		},
-
+		refresh() {
+			this.$asyncComputed.students.update()
+		},
 		refreshPerPage(value) {
 			this.perPage = value
-			this.$asyncComputed.students.update()
+			this.refresh()
 		},
 		refreshPage(value) {
 			this.page = value
-			this.$asyncComputed.students.update()
+			this.refresh()
 		},
 	},
 })
