@@ -2,17 +2,6 @@ import Vue from "vue";
 import Vuex from "vuex";
 
 Vue.use(Vuex);
-interface INotLogged {
-  isLogged: false;
-  user: Record<string, never>;
-}
-
-interface ILogged {
-  isLogged: true;
-  user: User;
-}
-
-type IAuth = ILogged | INotLogged;
 
 const initialState = (): IAuth => ({ isLogged: false, user: {} });
 
