@@ -1,5 +1,5 @@
 <template>
-	<v-app-bar app color="primary" dark>
+	<v-app-bar app color="primary">
 		<nav>
 			<v-btn @click="go('/')">Home</v-btn>
 			<v-btn @click="go('/about')">About</v-btn>
