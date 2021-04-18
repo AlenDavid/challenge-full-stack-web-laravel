@@ -37,9 +37,10 @@
 </template>
 
 <script lang="ts">
+import Vue from "vue"
 import router from "@/router"
 import user from "@/store/modules/user"
-import Vue from "vue"
+import { EMAIL_PATTERN } from "@/services/constants"
 
 export default Vue.extend({
 	name: "Login",
@@ -50,9 +51,7 @@ export default Vue.extend({
 		valid: true,
 		emailRules: [
 			(email: string) => !!email || "E-mail is required.",
-			(email: string) =>
-				/^([\w\d]+)@([\w\d]+.)+[\w\d.]+([\w\d])+$/.test(email) ||
-				"E-mail is invalid.",
+			(email: string) => EMAIL_PATTERN.test(email) || "E-mail is invalid.",
 		],
 		passwordRules: [
 			(password: string) => !!password || "Password is required.",

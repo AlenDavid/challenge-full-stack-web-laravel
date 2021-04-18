@@ -53,6 +53,7 @@
 <script lang="ts">
 import router from "@/router"
 import Vue from "vue"
+import { EMAIL_PATTERN } from "@/services/constants"
 
 export default Vue.extend({
 	name: "Student",
@@ -67,9 +68,7 @@ export default Vue.extend({
 		valid: false,
 		emailRules: [
 			(email: string) => !!email || "E-mail is required.",
-			(email: string) =>
-				/^([\w\d]+)@([\w\d]+.)+[\w\d.]+([\w\d])+$/.test(email) ||
-				"E-mail is invalid.",
+			(email: string) => EMAIL_PATTERN.test(email) || "E-mail is invalid.",
 		],
 		requiredRules: [(field: string) => !!field || "This field is required."],
 		cpfRules: [
