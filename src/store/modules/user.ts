@@ -2,15 +2,6 @@ import Vue from "vue";
 import Vuex from "vuex";
 
 Vue.use(Vuex);
-
-type User = {
-  snowflake: number;
-  name: string;
-  email: string;
-  type: number;
-  flags: number;
-};
-
 interface INotLogged {
   isLogged: false;
   user: Record<string, never>;
