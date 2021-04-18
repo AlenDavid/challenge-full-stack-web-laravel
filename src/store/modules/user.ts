@@ -3,31 +3,27 @@ import Vuex from "vuex"
 
 Vue.use(Vuex)
 
-const initialState = (): IAuth => ({ isLogged: false, user: {} })
-
-const getters = {
-	getState: (state: IAuth) => {
-		return state
-	},
+const initialState = (): IAuth => {
+	return { isLogged: false }
 }
 
-const mutations = {
-	login(state: ILogged, user: User) {
-		state.isLogged = true
-		state.user = user
-
-		return state
-	},
-	logout(state: IAuth) {
-		state.isLogged = false
-
-		return state
-	},
-}
-
-export default {
-	namespaced: true,
+export default new Vuex.Store({
 	state: initialState,
-	getters,
-	mutations,
-}
+	getters: {
+		isLogged(state) {
+			return state.isLogged
+		},
+	},
+	mutations: {
+		login(state: any, user: User) {
+			Vue.set(state, "isLogged", true)
+			Vue.set(state, "user", user)
+		},
+		logout(state: any) {
+			console.log("logout")
+
+			Vue.set(state, "isLogged", false)
+			Vue.set(state, "user", undefined)
+		},
+	},
+})

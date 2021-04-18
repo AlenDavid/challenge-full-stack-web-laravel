@@ -6,7 +6,7 @@ import Login from "../views/Login.vue"
 import Application from "../views/Application.vue"
 import Students from "../views/Students.vue"
 
-import store from "@/store"
+import user from "@/store/modules/user"
 
 Vue.use(VueRouter)
 
@@ -62,7 +62,7 @@ const router = new VueRouter({
 
 router.beforeEach(async (to, from, next) => {
 	// this is our user state
-	const userState = store.state.user
+	const userState = user.state
 
 	if (!userState.isLogged) {
 		try {
@@ -73,7 +73,7 @@ router.beforeEach(async (to, from, next) => {
 			const { data } = await res.json()
 
 			if (data) {
-				store.commit("user/login", data)
+				user.commit("login", data)
 			}
 		} catch (error) {
 			console.error(error)

@@ -38,6 +38,7 @@
 
 <script lang="ts">
 import router from "@/router"
+import user from "@/store/modules/user"
 import Vue from "vue"
 
 export default Vue.extend({
@@ -90,10 +91,13 @@ export default Vue.extend({
 						}
 
 						if (data) {
-							// salve login information
-							this.$store.commit("user/login", data)
-
-							return new Promise(() => setTimeout(() => router.push("/"), 1500))
+							// save login information
+							return new Promise(() =>
+								setTimeout(() => {
+									router.push("/")
+									user.commit("login", data)
+								}, 1500)
+							)
 						}
 					})
 					.finally(() => {
