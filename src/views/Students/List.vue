@@ -10,7 +10,9 @@
 				</v-text-field>
 			</v-col>
 			<v-col cols="12" sm="2" md="4">
-				<v-btn block x-large color="primary">Register student</v-btn>
+				<v-btn @click="go('students/create')" block x-large color="primary"
+					>Register student</v-btn
+				>
 			</v-col>
 		</v-row>
 		<v-row>
