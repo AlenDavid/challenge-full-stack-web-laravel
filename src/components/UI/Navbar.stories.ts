@@ -12,3 +12,8 @@ const Template = (args: any, { argTypes }: any) => ({
 })
 
 export const Default: any = Template.bind({})
+
+export const Logged: any = Template.bind({})
+Logged.args = {
+	isLogged: true,
+}

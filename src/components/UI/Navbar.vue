@@ -1,11 +1,11 @@
 <template>
 	<v-app-bar app color="primary" dark>
 		<nav>
-			<v-btn :to="{ path: '/' }">Home</v-btn>
-			<v-btn :to="{ path: '/about' }">About</v-btn>
-			<v-btn v-if="isLogged" :to="{ path: '/app' }">Students</v-btn>
+			<v-btn @click="go('/')">Home</v-btn>
+			<v-btn @click="go('/about')">About</v-btn>
+			<v-btn v-if="isLogged" @click="go('/app')">Students</v-btn>
 			<v-btn v-if="isLogged" @click="logout">Logout</v-btn>
-			<v-btn v-if="!isLogged" :to="{ path: '/login' }">Login</v-btn>
+			<v-btn v-if="!isLogged" @click="go('/login')">Login</v-btn>
 		</nav>
 	</v-app-bar>
 </template>
@@ -22,10 +22,19 @@ export default Vue.extend({
 		},
 	},
 	methods: {
+		go(path: string) {
+			// $router does not exist in storybook
+			if (this.$router) {
+				this.$router.push(path)
+			}
+		},
 		logout() {
 			fetch("/api/logout", { method: "POST" }).then(() => {
 				if (this.$route.path !== "/") {
-					this.$router.push("/")
+					// $router does not exist in storybook
+					if (this.$router) {
+						this.$router.push("/")
+					}
 					user.commit("logout")
 				}
 			})
