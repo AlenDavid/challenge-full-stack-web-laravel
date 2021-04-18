@@ -13,24 +13,37 @@
 		<v-divider></v-divider>
 
 		<v-list nav dense>
-			<v-list-item link to="/app/students">
-				<v-list-item-icon>
-					<v-icon>mdi-account-supervisor</v-icon>
-				</v-list-item-icon>
-				<v-list-item-title>Students</v-list-item-title>
-			</v-list-item>
-			<v-list-item link to="/app/profile">
-				<v-list-item-icon>
-					<v-icon>mdi-face</v-icon>
-				</v-list-item-icon>
-				<v-list-item-title>Profile</v-list-item-title>
-			</v-list-item>
-			<v-list-item link to="/app/settings">
-				<v-list-item-icon>
-					<v-icon>mdi-wrench</v-icon>
-				</v-list-item-icon>
-				<v-list-item-title>Settings</v-list-item-title>
-			</v-list-item>
+			<v-list-group prepend-icon="mdi-account-circle">
+				<template v-slot:activator>
+					<v-list-item-title>Students</v-list-item-title>
+				</template>
+
+				<v-list-item link to="/app/students/list">
+					<v-list-item-icon>
+						<v-icon>mdi-account-supervisor</v-icon>
+					</v-list-item-icon>
+					<v-list-item-title>Students</v-list-item-title>
+				</v-list-item>
+
+				<v-list-item link to="/app/students/create">
+					<v-list-item-icon>
+						<v-icon>mdi-account-plus</v-icon>
+					</v-list-item-icon>
+					<v-list-item-title>Register student</v-list-item-title>
+				</v-list-item>
+			</v-list-group>
+
+			<v-list-group prepend-icon="mdi-wrench">
+				<template v-slot:activator>
+					<v-list-item-title>Settings</v-list-item-title>
+				</template>
+				<v-list-item link to="/app/settings">
+					<v-list-item-icon>
+						<v-icon>mdi-wrench</v-icon>
+					</v-list-item-icon>
+					<v-list-item-title>Settings</v-list-item-title>
+				</v-list-item>
+			</v-list-group>
 		</v-list>
 	</v-navigation-drawer>
 </template>
