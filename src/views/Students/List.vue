@@ -20,7 +20,7 @@
 				class="col"
 				disable-sort
 				:server-items-length="total"
-				@click:row="click"
+				@click:row="viewStudent"
 				:headers="headers"
 				:items="students"
 				:loading="loading"
@@ -61,6 +61,13 @@ export default Vue.extend({
 		},
 	}),
 	methods: {
+		viewStudent(student: any) {
+			if (this.$router) {
+				if (student.snowflake) {
+					this.$router.push(student.snowflake)
+				}
+			}
+		},
 		go(path: string) {
 			// $router does not exist in storybook
 			if (this.$router) {

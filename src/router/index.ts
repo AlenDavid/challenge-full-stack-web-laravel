@@ -6,6 +6,7 @@ import Login from "../views/Login.vue"
 import Application from "../views/Application.vue"
 import Students from "../views/Students/List.vue"
 import StudentCreate from "../views/Students/Create.vue"
+import StudentView from "../views/Students/View.vue"
 
 import user from "@/store/modules/user"
 
@@ -33,7 +34,6 @@ const routes: Array<RouteConfig> = [
 	},
 	{
 		path: "/app",
-		name: "App",
 		component: Application,
 		children: [
 			{
@@ -53,6 +53,11 @@ const routes: Array<RouteConfig> = [
 				path: "students/create",
 				name: "StudentCreate",
 				component: StudentCreate,
+			},
+			{
+				path: "students/:snowflake",
+				name: "StudentView",
+				component: StudentView,
 			},
 			{
 				path: "profile",
