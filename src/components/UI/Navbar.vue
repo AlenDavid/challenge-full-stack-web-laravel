@@ -3,9 +3,9 @@
 		<nav>
 			<v-btn @click="go('/')">Home</v-btn>
 			<v-btn @click="go('/about')">About</v-btn>
-			<v-btn v-if="isLogged" @click="go('/app')">Students</v-btn>
-			<v-btn v-if="isLogged" @click="logout">Logout</v-btn>
-			<v-btn v-if="!isLogged" @click="go('/login')">Login</v-btn>
+			<v-btn v-if="isLogged" @click="go('/app')">App</v-btn>
+			<v-btn class="right" v-if="isLogged" @click="logout">Logout</v-btn>
+			<v-btn class="right" v-if="!isLogged" @click="go('/login')">Login</v-btn>
 		</nav>
 	</v-app-bar>
 </template>
@@ -47,6 +47,11 @@ export default Vue.extend({
 <style scope lang="scss">
 nav {
 	display: flex;
+	width: 100%;
 	gap: 12px;
+
+	.right {
+		margin-left: auto;
+	}
 }
 </style>
