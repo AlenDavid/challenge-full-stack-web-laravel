@@ -37,20 +37,31 @@ const routes: Array<RouteConfig> = [
 		children: [
 			{
 				path: "/",
-				name: "Students",
-				component: Students,
+				redirect: "students",
 				meta: {
 					// only see if it's logged
 					auth: true,
 				},
 			},
 			{
-				path: "/profile",
-				name: "Profile",
+				path: "students",
+				name: "Students",
+				component: Students,
 			},
 			{
-				path: "/managers",
+				path: "profile",
+				name: "Profile",
+				component: Students,
+			},
+			{
+				path: "settings",
+				name: "Settings",
+				component: Students,
+			},
+			{
+				path: "managers",
 				name: "Managers",
+				component: Students,
 			},
 		],
 	},
