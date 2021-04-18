@@ -90,6 +90,9 @@ export default Vue.extend({
             }
 
             if (data) {
+              // salve login information
+              this.$store.commit("user/login", data);
+
               return new Promise(() =>
                 setTimeout(() => router.push("/"), 1500)
               );
