@@ -13,6 +13,13 @@ export default new Vuex.Store({
 		isLogged(state) {
 			return state.isLogged
 		},
+		user(state) {
+			if (state.isLogged === true) {
+				return state.user
+			}
+
+			return {}
+		},
 	},
 	mutations: {
 		login(state: any, user: User) {
