@@ -94,7 +94,7 @@ export default Vue.extend({
 							// save login information
 							return new Promise(() =>
 								setTimeout(() => {
-									router.push("/")
+									router.push("/app")
 									user.commit("login", data)
 								}, 1500)
 							)
