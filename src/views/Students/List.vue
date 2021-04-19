@@ -15,7 +15,7 @@
 				</v-text-field>
 			</v-col>
 			<v-col cols="12" sm="2" md="4">
-				<v-btn @click="go('students/create')" block x-large color="primary"
+				<v-btn @click="go('/app/students/create')" block x-large color="primary"
 					>Register student</v-btn
 				>
 			</v-col>
