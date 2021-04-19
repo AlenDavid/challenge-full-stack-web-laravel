@@ -56,10 +56,10 @@
 					<v-col v-if="isLogged">
 						<p class="text-center text-h4">Welcome back, {{ user.name }}!</p>
 						<v-divider class="pb-3" />
-						<v-btn color="primary" v-if="user.type & 1" to="/app" block
+						<v-btn color="primary" v-if="(user.type & 2) === 2" to="/app" block
 							>Go to app!</v-btn
 						>
-						<div v-if="!user.type & 1">
+						<div v-if="(user.type & 1) === 1">
 							<p class="text-h3 text-center">Unfortunaly,</p>
 							<p class="text-h4">
 								students cannot use the app. Await for new updates! :)

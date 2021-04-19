@@ -47,7 +47,7 @@ const routes: Array<RouteConfig> = [
 					// only see if it's logged
 					auth: true,
 					// only see if user.type contains Manager
-					type: 1,
+					type: 2,
 				},
 			},
 			{
@@ -66,7 +66,7 @@ const routes: Array<RouteConfig> = [
 					// only see if it's logged
 					auth: true,
 					// only see if user.type contains Manager
-					type: 1,
+					type: 2,
 				},
 			},
 			{
@@ -122,7 +122,6 @@ router.beforeEach(async (to, from, next) => {
 		}
 	}
 	const { auth = false, cannotIfLogged = false, type = 0 } = to.meta
-	console.log(user.getters.user.type, type)
 
 	// maybe logged user cannot see next page
 	// this rules apply to login page

@@ -3,12 +3,17 @@
 		<nav>
 			<v-btn color="white" text @click="go('/')">Home</v-btn>
 			<v-btn color="white" text @click="go('/about')">About</v-btn>
-			<v-btn color="white" text v-if="isLogged && type & 1" @click="go('/app')"
-				>App</v-btn
+			<v-btn
+				color="white"
+				text
+				v-if="isLogged && (type & 2) === 2"
+				@click="go('/app')"
 			>
-			<v-btn color="white" text class="right" v-if="isLogged" @click="logout"
-				>Logout</v-btn
-			>
+				App
+			</v-btn>
+			<v-btn color="white" text class="right" v-if="isLogged" @click="logout">
+				Logout
+			</v-btn>
 			<v-btn
 				color="white"
 				text

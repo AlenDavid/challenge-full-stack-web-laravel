@@ -49,13 +49,16 @@ export default Vue.extend({
 	computed: {
 		user: () => user.getters.user,
 		type: () => {
-			switch (user.getters.user.type) {
-				case 0:
-					return "Student"
-				case 1:
-					return "Manager"
-				case 2:
-					return "Admin"
+			if ((user.getters.user.type & 1) === 1) {
+				return "Student"
+			}
+
+			if ((user.getters.user.type & 4) === 4) {
+				return "Admin"
+			}
+
+			if ((user.getters.user.type & 2) === 4) {
+				return "Manager"
 			}
 
 			return ""
