@@ -18,6 +18,7 @@
 			<v-text-field
 				label="CPF"
 				type="text"
+				v-mask="'###.###.###-##'"
 				v-model="CPF"
 				:rules="cpfRules"
 				required
