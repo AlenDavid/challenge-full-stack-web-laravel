@@ -3,7 +3,11 @@
 		<h1>Students</h1>
 		<v-row align="center">
 			<v-col cols="12" sm="6" md="8">
-				<v-text-field label="Type to search" v-model="search">
+				<v-text-field
+					prepend-inner-icon="mdi-magnify"
+					label="Type to search"
+					v-model="search"
+				>
 					<span slot="append">
 						<v-btn text @click="refresh">Search</v-btn>
 					</span>
