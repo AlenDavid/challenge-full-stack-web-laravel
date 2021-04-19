@@ -113,7 +113,7 @@ export default Vue.extend({
 						if (data) {
 							return new Promise(() =>
 								setTimeout(() => {
-									router.back()
+									router.push(`/app/students/${data.snowflake}`)
 								}, 1500)
 							)
 						}
