@@ -17,7 +17,7 @@
 		</v-row>
 		<v-row>
 			<v-data-table
-				class="col"
+				class="col clickable"
 				disable-sort
 				:server-items-length="total"
 				@click:row="viewStudent"
@@ -119,3 +119,11 @@ export default Vue.extend({
 	},
 })
 </script>
+
+<style lang="scss" scoped>
+.clickable {
+	> *td {
+		cursor: pointer;
+	}
+}
+</style>
