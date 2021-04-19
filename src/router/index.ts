@@ -35,10 +35,24 @@ const routes: Array<RouteConfig> = [
 	{
 		path: "/app",
 		component: Application,
+		meta: {
+			// only see if it's logged
+			auth: true,
+		},
 		children: [
 			{
 				path: "/",
 				redirect: "students/list",
+				meta: {
+					// only see if it's logged
+					auth: true,
+					// only see if user.type contains Manager
+					type: 1,
+				},
+			},
+			{
+				path: "/",
+				redirect: "settings",
 				meta: {
 					// only see if it's logged
 					auth: true,
@@ -48,6 +62,12 @@ const routes: Array<RouteConfig> = [
 				path: "students/list",
 				name: "Students",
 				component: Students,
+				meta: {
+					// only see if it's logged
+					auth: true,
+					// only see if user.type contains Manager
+					type: 1,
+				},
 			},
 			{
 				path: "students/create",
@@ -101,7 +121,8 @@ router.beforeEach(async (to, from, next) => {
 			console.error(error)
 		}
 	}
-	const { auth = false, cannotIfLogged = false } = to.meta
+	const { auth = false, cannotIfLogged = false, type = 0 } = to.meta
+	console.log(user.getters.user.type, type)
 
 	// maybe logged user cannot see next page
 	// this rules apply to login page
@@ -112,6 +133,15 @@ router.beforeEach(async (to, from, next) => {
 	// or should go to login
 
 	if (auth && !userState.isLogged) next({ name: "Login" })
+
+	// user can only go to next page
+	// if user type contains page type needed
+	// students cannot see /students page
+	if (user.getters.user) {
+		if ((user.getters.user.type & type) !== type) {
+			return
+		}
+	}
 
 	// user can go to next page
 	next()
