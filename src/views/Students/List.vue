@@ -5,7 +5,7 @@
 			<v-col cols="12" sm="6" md="8">
 				<v-text-field label="Type to search" v-model="search">
 					<span slot="append">
-						<v-btn outlined @click="refresh">Search</v-btn>
+						<v-btn text @click="refresh">Search</v-btn>
 					</span>
 				</v-text-field>
 			</v-col>
