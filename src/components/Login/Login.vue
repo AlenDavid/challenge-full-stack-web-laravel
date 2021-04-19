@@ -13,6 +13,7 @@
 				type="password"
 				v-model="password"
 				:rules="passwordRules"
+				@keyup.enter="onLogin"
 				required
 			></v-text-field>
 			<v-btn

@@ -7,6 +7,7 @@
 					prepend-inner-icon="mdi-magnify"
 					label="Type to search"
 					v-model="search"
+					@keyup.enter="refresh"
 				>
 					<span slot="append">
 						<v-btn text @click="refresh">Search</v-btn>
