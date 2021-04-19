@@ -13,14 +13,18 @@
 				type="email"
 				v-model="email"
 				:rules="emailRules"
+				@input="errorMessages.email = []"
+				:error-messages="errorMessages.email"
 				required
 			></v-text-field>
 			<v-text-field
 				label="CPF"
 				type="text"
-				v-mask="'###.###.###-##'"
 				v-model="CPF"
+				v-mask="'###.###.###-##'"
 				:rules="cpfRules"
+				@input="errorMessages.CPF = []"
+				:error-messages="errorMessages.CPF"
 				required
 			></v-text-field>
 			<v-text-field
@@ -28,6 +32,8 @@
 				:rules="requiredRules"
 				type="text"
 				v-model="RA"
+				@input="errorMessages.RA = []"
+				:error-messages="errorMessages.RA"
 				required
 			></v-text-field>
 			<v-btn
@@ -58,15 +64,18 @@ import { EMAIL_PATTERN } from "@/services/constants"
 
 export default Vue.extend({
 	name: "Student",
-	props: {
-		name: String,
-		email: String,
-		RA: String,
-		CPF: String,
-	},
 	data: () => ({
 		ref: {},
 		valid: false,
+		name: "",
+		email: "",
+		CPF: "",
+		RA: "",
+		errorMessages: {
+			email: [],
+			RA: [],
+			CPF: [],
+		},
 		emailRules: [
 			(email: string) => !!email || "E-mail is required.",
 			(email: string) => EMAIL_PATTERN.test(email) || "E-mail is invalid.",
@@ -101,21 +110,27 @@ export default Vue.extend({
 				fetch("/api/students", {
 					method: "POST",
 					body,
+					keepalive: true,
 				})
-					.then((res) => res.json())
-					// eslint-disable-next-line
-					.then(({ data, error }: any) => {
-						if (error) {
-							this.snackbarMessage = error[0] || error
-							this.snackbarShow = true
-						}
+					.then(async (response) => {
+						if (response.status >= 200 && response.status < 300)
+							return await response.json()
 
+						throw await response.json()
+					})
+					// eslint-disable-next-line
+					.then(({ data }: any) => {
 						if (data) {
 							return new Promise(() =>
 								setTimeout(() => {
 									router.push(`/app/students/${data.snowflake}`)
 								}, 1500)
 							)
+						}
+					})
+					.catch((error) => {
+						if (error) {
+							this.errorMessages = { ...this.errorMessages, ...error }
 						}
 					})
 					.finally(() => {
