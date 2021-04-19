@@ -47,18 +47,16 @@
 			</v-col>
 			<v-col>
 				<v-row>
-					<v-col>
+					<v-col v-if="!isLogged">
 						<p class="text-h3 text-center">
-							<span>You cannot miss this change!</span>
+							<span>You cannot miss this chance!</span>
 						</p>
-						<p class="text-h4">
-							<span>
-								<v-btn color="primary" block>Create your account!</v-btn>
-							</span>
-						</p>
-
-						<p></p
-					></v-col>
+						<v-btn color="primary" x-large block> Create your account! </v-btn>
+					</v-col>
+					<v-col v-if="isLogged">
+						<p class="text-center text-h4">Welcome back, {{ user.name }}!</p>
+						<v-btn color="primary" to="/app" block>Go to app!</v-btn>
+					</v-col>
 				</v-row>
 			</v-col>
 		</v-row>
@@ -67,8 +65,13 @@
 
 <script lang="ts">
 import Vue from "vue"
+import user from "@/store/modules/user"
 
 export default Vue.extend({
 	name: "Home",
+	computed: {
+		user: () => user.getters.user,
+		isLogged: () => user.getters.isLogged,
+	},
 })
 </script>
