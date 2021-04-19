@@ -2,17 +2,13 @@
 
 exports[`Login.vue should match snapshot component 1`] = `
 <v-container-stub tag="div">
-  <v-form-stub>
-    <v-text-field-stub errorcount="1" errormessages="" messages="" rules="email => !!email || &quot;E-mail is required.&quot;,email => /^([\\w\\d]+)@([\\w\\d]+.)+[\\w\\d.]+([\\w\\d])+$/.test(email) || &quot;E-mail is invalid.&quot;" successmessages="" backgroundcolor="" label="E-mail" loaderheight="2" clearicon="$clear" type="email" required=""></v-text-field-stub>
-    <v-text-field-stub errorcount="1" errormessages="" messages="" rules="" successmessages="" backgroundcolor="" label="Password" loaderheight="2" clearicon="$clear" type="password"></v-text-field-stub>
-    <v-row-stub tag="div">
-      <v-col-stub tag="div">
-        <v-btn-stub tag="button" activeclass="" type="button">Cancel</v-btn-stub>
-      </v-col-stub>
-      <v-col-stub tag="div">
-        <v-btn-stub color="primary" tag="button" activeclass="" type="submit">Login</v-btn-stub>
-      </v-col-stub>
-    </v-row-stub>
+  <v-form-stub lazyvalidation="true" value="true">
+    <v-text-field-stub errorcount="1" errormessages="" messages="" rules="email => !!email || &quot;E-mail is required.&quot;,email => _constants.EMAIL_PATTERN.test(email) || &quot;E-mail is invalid.&quot;" successmessages="" value="" backgroundcolor="" label="E-mail" loaderheight="2" clearicon="$clear" type="email" required=""></v-text-field-stub>
+    <v-text-field-stub errorcount="1" errormessages="" messages="" rules="password => !!password || &quot;Password is required.&quot;,password => password.length > 0 || &quot;Password must not be empty.&quot;" successmessages="" value="" backgroundcolor="" label="Password" loaderheight="2" clearicon="$clear" type="password" required=""></v-text-field-stub>
+    <v-btn-stub color="primary" tag="button" activeclass="" xlarge="true" block="true" type="button">Login</v-btn-stub>
   </v-form-stub>
+  <v-snackbar-stub tag="div" top="true" contentclass="" timeout="3000" transition="v-snack-transition">
+
+  </v-snackbar-stub>
 </v-container-stub>
 `;
