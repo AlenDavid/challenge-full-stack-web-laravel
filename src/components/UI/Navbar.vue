@@ -3,7 +3,9 @@
 		<nav>
 			<v-btn color="white" text @click="go('/')">Home</v-btn>
 			<v-btn color="white" text @click="go('/about')">About</v-btn>
-			<v-btn color="white" text v-if="isLogged" @click="go('/app')">App</v-btn>
+			<v-btn color="white" text v-if="isLogged && type & 1" @click="go('/app')"
+				>App</v-btn
+			>
 			<v-btn color="white" text class="right" v-if="isLogged" @click="logout"
 				>Logout</v-btn
 			>
@@ -31,6 +33,9 @@ export default Vue.extend({
 		},
 		isLogged() {
 			return user.getters.isLogged
+		},
+		type() {
+			return user.getters.user.type ?? 0
 		},
 	},
 	methods: {
