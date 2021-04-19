@@ -19,6 +19,7 @@
 			<v-text-field
 				label="CPF"
 				type="text"
+				v-mask="'###.###.###-##'"
 				v-model="student.CPF"
 				readonly
 			></v-text-field>
@@ -35,7 +36,33 @@
 			</v-btn>
 			<v-btn v-if="!readonly" outlined @click="cancel"> Cancel </v-btn>
 			<v-btn v-if="!readonly" color="primary" @click="save"> Save </v-btn>
+			<v-btn
+				class="right"
+				v-if="readonly"
+				color="secondary"
+				@click="openDialog = true"
+			>
+				Delete
+			</v-btn>
 		</v-row>
+		<v-dialog
+			transition="dialog-bottom-transition"
+			persistent
+			v-model="openDialog"
+			max-width="290"
+		>
+			<v-card>
+				<v-card-title class="headline"> Delete student </v-card-title>
+				<v-card-text>
+					Do you want to delete student {{ student.name }}?
+				</v-card-text>
+				<v-card-actions>
+					<v-spacer></v-spacer>
+					<v-btn text @click="openDialog = false"> Cancel </v-btn>
+					<v-btn color="primary" text @click="del"> Delete </v-btn>
+				</v-card-actions>
+			</v-card>
+		</v-dialog>
 	</v-container>
 </template>
 
@@ -49,6 +76,7 @@ export default Vue.extend({
 		snowflake: String,
 	},
 	data: () => ({
+		openDialog: false,
 		valid: false,
 		readonly: true,
 		requiredRules: [(field: string) => !!field || "This field is required."],
@@ -97,6 +125,14 @@ export default Vue.extend({
 				})
 			}
 		},
+		del() {
+			const url = `/api/students/${this.$route.params.snowflake}`
+			fetch(url, {
+				method: "DELETE",
+			}).then(() => {
+				this.$router.push("/app/students/list")
+			})
+		},
 	},
 })
 </script>
@@ -108,5 +144,9 @@ export default Vue.extend({
 
 .row {
 	gap: 12px;
+}
+
+.right {
+	margin-left: auto;
 }
 </style>
