@@ -11,7 +11,7 @@
 				color="white"
 				text
 				class="right"
-				v-if="!isLogged"
+				v-if="!isLogged && route !== 'Login'"
 				@click="go('/login')"
 				>Login</v-btn
 			>
@@ -26,6 +26,9 @@ import Vue from "vue"
 export default Vue.extend({
 	name: "Navbar",
 	computed: {
+		route() {
+			return this.$route.name ?? ""
+		},
 		isLogged() {
 			return user.getters.isLogged
 		},
