@@ -1,0 +1,5 @@
+[[redirects]]
+  from = "/api/*"
+  to = VUE_APP_API_ENDPOINT
+  status = 200
+  force = true
