@@ -109,11 +109,12 @@ export default Vue.extend({
 						// update total fields
 						this.total = meta.total
 
+						return data
+					})
+					.finally(() => {
 						setTimeout(() => {
 							this.loading = false
-						}, 800)
-
-						return data
+						}, 500)
 					})
 			},
 			default: [],
