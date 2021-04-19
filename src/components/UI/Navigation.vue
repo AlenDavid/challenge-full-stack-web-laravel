@@ -1,5 +1,5 @@
 <template>
-	<v-navigation-drawer permanent expand-on-hover>
+	<v-navigation-drawer permanent>
 		<v-list>
 			<v-list-item link>
 				<v-list-item-content>
@@ -13,7 +13,7 @@
 		<v-divider></v-divider>
 
 		<v-list nav dense>
-			<v-list-group prepend-icon="mdi-account-circle">
+			<v-list-group sub-group prepend-icon="mdi-account-circle">
 				<template v-slot:activator>
 					<v-list-item-title>Students</v-list-item-title>
 				</template>
@@ -22,7 +22,7 @@
 					<v-list-item-icon>
 						<v-icon>mdi-account-supervisor</v-icon>
 					</v-list-item-icon>
-					<v-list-item-title>Students</v-list-item-title>
+					<v-list-item-title>All students</v-list-item-title>
 				</v-list-item>
 
 				<v-list-item link to="/app/students/create">
@@ -33,7 +33,7 @@
 				</v-list-item>
 			</v-list-group>
 
-			<v-list-group prepend-icon="mdi-wrench">
+			<v-list-group sub-group prepend-icon="mdi-wrench">
 				<template v-slot:activator>
 					<v-list-item-title>Settings</v-list-item-title>
 				</template>
