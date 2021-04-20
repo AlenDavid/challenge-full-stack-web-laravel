@@ -1,5 +1,7 @@
 [![Netlify Status](https://api.netlify.com/api/v1/badges/0203aa15-083f-4a78-9f93-24d0e15eb779/deploy-status)](https://app.netlify.com/sites/group-a/deploys)
 
+[![Travis CI](https://travis-ci.com/AlenDavid/challenge-full-stack-web-laravel.svg?branch=main)](https://travis-ci.com/github/AlenDavid/challenge-full-stack-web-laravel)
+
 # GrupoA Educação - Full Stack Web Developer - David Alen 🎖️
 
 - [GrupoA Educação - Full Stack Web Developer - David Alen 🎖️](#grupoa-educação---full-stack-web-developer---david-alen-️)
