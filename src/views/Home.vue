@@ -51,7 +51,14 @@
 						<p class="text-h3 text-center">
 							<span>You cannot miss this chance!</span>
 						</p>
-						<v-btn color="primary" x-large block> Create your account! </v-btn>
+						<v-btn
+							color="primary"
+							href="mailto:davidalen.dev@gmail.com"
+							x-large
+							block
+						>
+							Submit to create your account!
+						</v-btn>
 					</v-col>
 					<v-col v-if="isLogged">
 						<p class="text-center text-h4">Welcome back, {{ user.name }}!</p>
