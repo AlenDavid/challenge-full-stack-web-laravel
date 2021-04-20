@@ -7,4 +7,4 @@ install: yarn
 cache: yarn
 
 run:
-  - yarn test
+  - yarn test:unit
