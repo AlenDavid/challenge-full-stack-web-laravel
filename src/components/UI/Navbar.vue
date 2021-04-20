@@ -34,7 +34,7 @@ export default Vue.extend({
 	name: "Navbar",
 	computed: {
 		route() {
-			return this.$route.name ?? ""
+			return this?.$route?.name ?? ""
 		},
 		isLogged() {
 			return user.getters.isLogged
