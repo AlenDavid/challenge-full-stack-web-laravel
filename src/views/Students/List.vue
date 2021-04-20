@@ -37,9 +37,18 @@
 				<!-- // es-lint-ignore-next-line -->
 				<template v-slot:item.actions="{ item }">
 					<v-row>
-						<v-btn color="primary" @click="viewStudent(item)">Edit </v-btn>
-						<v-btn class="ml-2" color="secondary" @click="openDeleteModal(item)"
-							>Delete
+						<v-btn color="primary" @click="viewStudent(item)">
+							Edit
+
+							<v-icon class="pl-3">mdi-pencil</v-icon>
+						</v-btn>
+						<v-btn
+							class="ml-2"
+							color="secondary"
+							@click="openDeleteModal(item)"
+						>
+							Delete
+							<v-icon class="pl-3">mdi-delete</v-icon>
 						</v-btn>
 					</v-row>
 				</template>
