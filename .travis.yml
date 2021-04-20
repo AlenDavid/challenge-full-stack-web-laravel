@@ -2,9 +2,8 @@ language: node_js
 node_js:
   - 15
 
-install: yarn
+install:
+  - yarn install
 
-cache: yarn
-
-run:
+script:
   - yarn test:unit
