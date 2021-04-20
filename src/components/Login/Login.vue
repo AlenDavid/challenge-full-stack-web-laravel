@@ -17,6 +17,7 @@
 				required
 			></v-text-field>
 			<v-btn
+				test-id="login-button"
 				x-large
 				block
 				:disabled="!valid"

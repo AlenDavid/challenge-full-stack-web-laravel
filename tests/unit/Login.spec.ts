@@ -9,32 +9,11 @@ describe("Login.vue", () => {
 		expect(wrapper).toMatchSnapshot()
 	})
 
-	it("should see email and password", () => {
-		const wrapper = shallowMount(Login, {
-			propsData: {
-				email: "example@example.com",
-				password: "password",
-			},
-		})
-
-		// select the text field
-		const emailInput = wrapper.find("[type='email']")
-		const passInput = wrapper.find("[type='password']")
-
-		expect(emailInput.attributes().value).toMatch("example@example.com")
-		expect(passInput.attributes().value).toMatch("password")
-	})
-
 	it("should see login button", () => {
-		const wrapper = shallowMount(Login, {
-			propsData: {
-				email: "example@example.com",
-				password: "password",
-			},
-		})
+		const wrapper = shallowMount(Login)
 
 		// select the login button
-		const button = wrapper.find("[type='submit']")
+		const button = wrapper.find("[test-id='login-button']")
 
 		expect(button.html()).toMatch("Login")
 	})
