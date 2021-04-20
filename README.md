@@ -2,6 +2,20 @@
 
 # GrupoA Educação - Full Stack Web Developer - David Alen 🎖️
 
+- [GrupoA Educação - Full Stack Web Developer - David Alen 🎖️](#grupoa-educação---full-stack-web-developer---david-alen-️)
+  - [Docs 📑](#docs-)
+    - [Instructions 🔨](#instructions-)
+    - [Comments 📢](#comments-)
+  - [Project setup 🖥️](#project-setup-️)
+    - [Yarn](#yarn)
+    - [Storybook](#storybook)
+    - [Dependencies](#dependencies)
+    - [Run our unit tests](#run-our-unit-tests)
+    - [Compiles and hot-reloads for development](#compiles-and-hot-reloads-for-development)
+    - [Lints and fixes files](#lints-and-fixes-files)
+    - [Compiles and minifies for production](#compiles-and-minifies-for-production)
+  - [Thank you for reading this! ❤️](#thank-you-for-reading-this-️)
+
 ## Docs 📑
 
 See docs/ folder for more details.
