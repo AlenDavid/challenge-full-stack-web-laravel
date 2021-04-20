@@ -69,7 +69,9 @@
 				<v-card-actions>
 					<v-spacer></v-spacer>
 					<v-btn text @click="openDeleteDialog = false"> Cancel </v-btn>
-					<v-btn color="primary" text @click="del"> Delete </v-btn>
+					<v-btn color="primary" text @click="del(selectedToDelete)">
+						Delete
+					</v-btn>
 				</v-card-actions>
 			</v-card>
 		</v-dialog>
@@ -110,6 +112,18 @@ export default Vue.extend({
 			this.selectedToDelete = student
 			this.openDeleteDialog = true
 		},
+		del(student: any) {
+			if (student && student.snowflake) {
+				const url = `/api/students/${student.snowflake}`
+
+				fetch(url, {
+					method: "DELETE",
+				}).then(() => {
+					this.openDeleteDialog = false
+					;(this as any).refresh()
+				})
+			}
+		},
 		viewStudent(student: any) {
 			if (this.$router) {
 				if (student.snowflake) {
@@ -127,10 +141,12 @@ export default Vue.extend({
 			this.$asyncComputed.students.update()
 		},
 		refreshPerPage(value: any) {
-			this.perPage = value(this as any).refresh()
+			this.perPage = value
+			;(this as any).refresh()
 		},
 		refreshPage(value: any) {
-			this.page = value(this as any).refresh()
+			this.page = value
+			;(this as any).refresh()
 		},
 	},
 	asyncComputed: {
