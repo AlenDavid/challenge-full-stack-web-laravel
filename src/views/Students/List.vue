@@ -25,7 +25,6 @@
 				class="col clickable"
 				disable-sort
 				:server-items-length="total"
-				@click:row="viewStudent"
 				:headers="headers"
 				:items="students"
 				:loading="loading"
@@ -34,8 +33,37 @@
 				:footer-props="footerProps"
 				@update:page="refreshPage"
 				@update:items-per-page="refreshPerPage"
-			></v-data-table>
+			>
+				<!-- // es-lint-ignore-next-line -->
+				<template v-slot:item.actions="{ item }">
+					<v-row>
+						<v-btn color="primary" @click="viewStudent(item)">Edit </v-btn>
+						<v-btn class="ml-2" color="secondary" @click="openDeleteModal(item)"
+							>Delete
+						</v-btn>
+					</v-row>
+				</template>
+			</v-data-table>
 		</v-row>
+		<v-dialog
+			transition="dialog-bottom-transition"
+			persistent
+			v-model="openDeleteDialog"
+			max-width="290"
+			v-bind="selectedToDelete"
+		>
+			<v-card>
+				<v-card-title class="headline"> Delete student </v-card-title>
+				<v-card-text>
+					Do you want to delete student {{ selectedToDelete.name }}?
+				</v-card-text>
+				<v-card-actions>
+					<v-spacer></v-spacer>
+					<v-btn text @click="openDeleteDialog = false"> Cancel </v-btn>
+					<v-btn color="primary" text @click="del"> Delete </v-btn>
+				</v-card-actions>
+			</v-card>
+		</v-dialog>
 	</v-container>
 </template>
 
@@ -50,6 +78,7 @@ export default Vue.extend({
 		perPage: 5,
 		total: -1,
 		loading: true,
+		openDeleteDialog: false,
 		headers: [
 			{
 				text: "RA (Academic Register)",
@@ -57,15 +86,21 @@ export default Vue.extend({
 				value: "RA",
 				width: 1,
 			},
-			{ text: "Name", value: "name", width: 4 },
-			{ text: "CPF", value: "CPF", width: 1 },
-			{ text: "E-mail", value: "email", width: 6 },
+			{ text: "Name", value: "name", width: 64 },
+			{ text: "CPF", value: "CPF", width: 64 },
+			{ text: "E-mail", value: "email", width: 64 },
+			{ text: "actions", value: "actions", width: 196 },
 		],
 		footerProps: {
 			itemsPerPageOptions: [5, 10, 15],
 		},
+		selectedToDelete: {},
 	}),
 	methods: {
+		openDeleteModal(student: any) {
+			this.selectedToDelete = student
+			this.openDeleteDialog = true
+		},
 		viewStudent(student: any) {
 			if (this.$router) {
 				if (student.snowflake) {
