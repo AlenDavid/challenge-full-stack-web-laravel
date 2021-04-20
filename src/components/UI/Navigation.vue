@@ -14,7 +14,7 @@
 
 		<v-list nav dense>
 			<v-list-group
-				v-if="user.type & 1"
+				v-if="(user.type & 2) === 2"
 				sub-group
 				prepend-icon="mdi-account-circle"
 			>
