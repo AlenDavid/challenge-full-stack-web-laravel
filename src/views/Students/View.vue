@@ -78,7 +78,7 @@ export default Vue.extend({
 	data: () => ({
 		openDialog: false,
 		valid: false,
-		readonly: true,
+		readonly: false,
 		requiredRules: [(field: string) => !!field || "This field is required."],
 		emailRules: [
 			(email: string) => !!email || "E-mail is required.",
